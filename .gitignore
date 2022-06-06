@@ -8,3 +8,5 @@
 /dataSources/
 /dataSources.local.xml
 /editor/cn/doc/content/
+.idea
+.git
