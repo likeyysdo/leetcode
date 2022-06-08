@@ -62,19 +62,23 @@
 class Solution {
     public List<List<Integer>> pathSum(TreeNode root, int targetSum) {
         if( root == null ) return new ArrayList();
+        //if( root.val == targetSum ) return new ArrayList();
         List<List<Integer>> resultList = new ArrayList<List<Integer>>();
         List<Integer> curList = new ArrayList<>();
-        count(resultList, curList, node, target , 0);
-        return null;
+        count(resultList,curList,root,targetSum,0);
+        return resultList;
     }
     public void count( List<List<Integer>> resultList , List<Integer> curList , TreeNode node , int target ,int count){
         if( node == null || node.val > target - count ) return;
         curList.add(node.val);
-        if( node.val == target - count ){
+        if( node.val == target - count && node.left == null && node.right == null ){
             List<Integer> list = new ArrayList<>(curList.size());
-            list.add(curList);
+            list.addAll(curList);
             resultList.add(list);
         }
+        count( resultList , curList , node.left , target , count + node.val );
+        count( resultList , curList , node.right , target , count + node.val );
+        curList.remove( curList.size() - 1 );
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

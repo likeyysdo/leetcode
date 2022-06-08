@@ -34,16 +34,23 @@ class Solution {
         for( int i = 0 ; i < m ; i++){
             visit[i] = new boolean[n];
         }
-        return 0;
+        return count(m, n, k, visit, 0, 0);
     }
     public int count( int m , int  n , int k , boolean[][] visit , int x , int y){
         if( x < 0 || y < 0 || x >= m || y >= n || visit[x][y] ){
             return 0;
         }
 
-        if( x / 100  )
+        if( x / 100 +( x % 100 )/ 10 + x % 10
+                + y / 100 +( y % 100 )/ 10 + y % 10 > k ){
+            return 0;
+        }
 
-        return 0;
+        visit[x][y] = true;
+        return 1 + count(m, n, k, visit, x+1, y)
+                + count(m, n, k, visit, x, y+1)
+                + count(m, n, k, visit, x-1, y)
+                + count(m, n, k, visit, x, y-1);
     }
 
 
