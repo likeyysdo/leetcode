@@ -20,7 +20,12 @@
 //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public int[] printNumbers(int n) {
-
+        int s = (int)Math.pow(10,n)-1;
+        int[] r= new int[s];
+        for( int i = 0 ; i < s ; i++ ){
+            r[i] = i+1;
+        }
+        return r;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)
